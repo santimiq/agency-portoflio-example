@@ -11,7 +11,7 @@ import Header from './Header'
 import Cursor from './CustomCursor'
 
 //Context
-import { useGlobalStateContext } from '../context/GlobalContext'
+import { useGlobalStateContext, useGlobalDispatchContext } from '../context/GlobalContext'
 
 const GlobalStyle = createGlobalStyle`
   ${ normalize }
@@ -33,6 +33,10 @@ const GlobalStyle = createGlobalStyle`
     overflox-x: hidden;
   }
 `
+
+
+
+
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
@@ -55,13 +59,19 @@ const Layout = ({ children }) => {
       red: '#ea291e'
     }
 
-    const {currentTheme} = useGlobalStateContext()
+  const {currentTheme, cursorStyles} = useGlobalStateContext()
+  const dispatch = useGlobalDispatchContext()
+
+  const onCursor = cursorType => {
+    cursorType = (cursorStyles.includes(cursorType) && cursorType) || false
+    dispatch({type: 'CURSOR_TYPE', cursorType: cursorType})
+  }
 
   return (
     <ThemeProvider theme={currentTheme === 'dark' ? darkTheme : lightTheme}>
       <GlobalStyle />
       <Cursor />
-      <Header />
+      <Header onCursor={onCursor} />
       <main>{children}</main>
     </ThemeProvider>
   )
