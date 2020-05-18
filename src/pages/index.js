@@ -18,7 +18,7 @@ const IndexPage = props => {
 
   return (
     <Layout>
-      <HomeBanner />
+      <HomeBanner onCursor={onCursor} />
     </Layout>
   )
 }
