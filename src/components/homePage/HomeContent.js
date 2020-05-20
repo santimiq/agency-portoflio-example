@@ -8,7 +8,7 @@ import { Container } from "../../styles/globalStyles"
 import { HomeContentSection, Content } from "../../styles/homeStyles"
 
 const HomeContent = () => {
-  const animation = useAnimation();
+  const animation = useAnimation()
   const [contentRef, inView] = useInView({
     triggerOnce: true,
     rootMargin: '-100px',
@@ -19,6 +19,7 @@ const HomeContent = () => {
       animation.start('visible')
     }
   }, [animation, inView])
+
   return (
     <HomeContentSection
       ref={contentRef}
