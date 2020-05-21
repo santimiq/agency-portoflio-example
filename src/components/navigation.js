@@ -6,6 +6,10 @@ import {motion, AnimatePresence} from 'framer-motion'
 import {Container, Flex} from '../styles/GlobalStyles'
 import { Nav, NavHeader, CloseNav, NavList, NavFooter, NavVideos} from '../styles/navigationStyles'
 
+import { FooterContent, FooterSocial, FooterNav } from "../styles/footerStyles"
+
+import { Instagram, Facebook, Vimeo } from '../assets/svg/social-icons'
+
 const navRoutes = [
   {id: 0, title: 'not humble', path: '/not-humble', video: 'featured-video.mp4'},
   {id: 1, title: 'bleeping easy', path: '/bleeping-easy', video: 'easy.mp4'},
@@ -96,7 +100,27 @@ const Navigation = ({toggleMenu, setToggleMenu, onCursor}) => {
                   ))}
                 </ul>
               </NavList>
-              <NavFooter></NavFooter>
+              <NavFooter>
+                <Flex spaceBetween>
+                  <FooterContent>
+                    <p>info@furrow.studio</p>
+                  </FooterContent>
+                  <FooterContent wider>
+                    <p>902.315.1234</p>
+                  </FooterContent>
+                  <FooterSocial>
+                    <a onMouseEnter={() => onCursor('pointer')} onMouseLeave={onCursor} href="/">
+                      <Instagram />
+                    </a>
+                    <a onMouseEnter={() => onCursor('pointer')} onMouseLeave={onCursor} href="/">
+                      <Facebook />
+                    </a>
+                    <a onMouseEnter={() => onCursor('pointer')} onMouseLeave={onCursor} href="/">
+                      <Vimeo />
+                    </a>
+                  </FooterSocial>
+                </Flex>
+              </NavFooter>
               <NavVideos>
                 <motion.div animate={{ width: revealVideo.show ? 0 : "100%" }} className="reveal"></motion.div>
                 <div className="video">

@@ -10,6 +10,7 @@ import { normalize } from 'styled-normalize'
 import Header from './Header'
 import Cursor from './CustomCursor'
 import Navigation from '../components/navigation'
+import Footer from '../components/Footer'
 
 //Context
 import { useGlobalStateContext, useGlobalDispatchContext } from '../context/GlobalContext'
@@ -49,15 +50,25 @@ const Layout = ({ children }) => {
     }
   `)
 
+    const [hamburgerPosition, setHamburgerPosition] = useState({
+      x: 0,
+      y: 0
+    })
+
     const darkTheme = {
       background: '#000',
       text: '#fff',
-      red: '#ea291e'
+      red: '#ea291e',
+      left: `${hamburgerPosition.x}px`,
+      top: `${hamburgerPosition.y}px`
+
     }
     const lightTheme = {
       background: '#fff',
       text: '#000',
-      red: '#ea291e'
+      red: '#ea291e',
+      left: `${hamburgerPosition.x}px`,
+      top: `${hamburgerPosition.y}px`
     }
 
   const {currentTheme, cursorStyles} = useGlobalStateContext()
@@ -74,9 +85,16 @@ const Layout = ({ children }) => {
     <ThemeProvider theme={currentTheme === 'dark' ? darkTheme : lightTheme}>
       <GlobalStyle />
       <Cursor toggleMenu={toggleMenu} />
-      <Header onCursor={onCursor} toggleMenu={toggleMenu} setToggleMenu={setToggleMenu} />
+      <Header
+        onCursor={onCursor}
+        toggleMenu={toggleMenu}
+        setToggleMenu={setToggleMenu}
+        hamburgerPosition={hamburgerPosition}
+        sethamburgerPosition={setHamburgerPosition}
+        />
       <Navigation toggleMenu={toggleMenu} setToggleMenu={setToggleMenu} onCursor={onCursor} />
       <main>{children}</main>
+      <Footer onCursor={onCursor} />
     </ThemeProvider>
   )
 }
