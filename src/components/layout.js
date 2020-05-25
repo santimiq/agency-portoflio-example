@@ -52,7 +52,7 @@ const Layout = ({ children }) => {
 
     const [hamburgerPosition, setHamburgerPosition] = useState({
       x: 0,
-      y: 0
+      y: 0,
     })
 
     const darkTheme = {
@@ -90,7 +90,7 @@ const Layout = ({ children }) => {
         toggleMenu={toggleMenu}
         setToggleMenu={setToggleMenu}
         hamburgerPosition={hamburgerPosition}
-        sethamburgerPosition={setHamburgerPosition}
+        setHamburgerPosition={setHamburgerPosition}
         />
       <Navigation toggleMenu={toggleMenu} setToggleMenu={setToggleMenu} onCursor={onCursor} />
       <main>{children}</main>
